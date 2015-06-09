@@ -1,0 +1,9 @@
+%h1 Edit ingredient suggestions
+
+.well
+  #IngredientSuggestionsEditor
+
+:coffee
+
+  $(document).on "page:change", ->
+    window.loadIngredientSuggestionsEditor(#{@ingredients})
