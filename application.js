@@ -6,9 +6,10 @@
 //
 //= require react
 //= require react_ujs
+//= require react-bootstrap
 //= require fluxxor
 //= require components
-//= require jquery-growl
+//= require growl
 //
 //= require_tree .
 //

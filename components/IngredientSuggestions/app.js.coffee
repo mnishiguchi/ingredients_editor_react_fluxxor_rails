@@ -10,10 +10,7 @@ window.loadIngredientSuggestionsEditor = (options) ->
 
   IngredientSuggestionsStore = Fluxxor.createStore
     initialize: ->
-
       @ingredients = options || []
-      # console.log @ingredients  # Debug
-
       @bindActions(constants.UPDATE_INGREDIENT, @onUpdateIngredient,
                    constants.DELETE_INGREDIENT, @onDeleteIngredient)
 
@@ -43,8 +40,7 @@ window.loadIngredientSuggestionsEditor = (options) ->
 
       .done (data, textStatus, jqXHR) ->
         $.growl.notice title: "", message: "Ingredient suggestion updated"
-
-      .fail (jqXHR, textStatus, errorThrown) =>
+      .fail (jqXHR, textStatus, errorThrown) ->
         $.growl.error title: "", message: "Error updating ingredient suggestion"
         console.error textStatus, errorThrown.toString()
 
@@ -56,10 +52,9 @@ window.loadIngredientSuggestionsEditor = (options) ->
 
       .done (data, extStatus, jqXHR) ->
         $.growl.notice title: "", message: "Ingredient suggestion deleted"
-      .fail (jqXHR, textStatus, errorThrown) =>
+      .fail (jqXHR, textStatus, errorThrown) ->
         $.growl.error title: "", message: "Error deleting ingredient suggestion"
         console.error textStatus, errorThrown.toString()
-
 
   # Instantiating our stores
 
@@ -74,7 +69,6 @@ window.loadIngredientSuggestionsEditor = (options) ->
 
   flux.on 'dispatch', (type, payload) ->
     console.log "[Dispatch]", type, payload if console?.log?
-
 
   # The main React component (<IngredientSuggestionsEditor/>)
 
@@ -102,4 +96,4 @@ window.loadIngredientSuggestionsEditor = (options) ->
   target = document.getElementById("IngredientSuggestionsEditor")
   if target
   then React.render <IngredientSuggestionsEditor flux={flux}/>, target
-  else console.log("Couldn't find the target element")
+  else console.error("Couldn't find the target element")
