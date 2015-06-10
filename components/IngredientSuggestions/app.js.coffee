@@ -87,14 +87,11 @@ window.loadIngredientSuggestionsEditor = (options) ->
         <IngredientSuggestion ingredient={ingredient}
                               key={ingredient.id}
                               flux={flux} />
-      <div>
-        {ingredients}
-      </div>
+
+      <div>{ingredients}</div>
 
   # Rendering the whole component to the target element
 
   target = document.getElementById("IngredientSuggestionsEditor")
   if target
     React.render <IngredientSuggestionsEditor flux={flux}/>, target
-  else
-    console.error("Couldn't find the target element")
