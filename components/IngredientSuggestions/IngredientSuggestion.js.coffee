@@ -24,7 +24,7 @@
 
   handleDelete: (e) ->
     e.preventDefault()
-    if confirm("Delete " + @props.ingredient.name + "?")
+    if confirm("Delete " + @state.saved_value + "?")
       @getFlux().actions.deleteIngredient(@props.ingredient)
 
   handleCancelChange: (e) ->
@@ -32,7 +32,6 @@
     @setState(value: @state.saved_value, changed: false)
 
   render: ->
-    ButtonToolbar = ReactBootstrap.ButtonToolbar
     Button = ReactBootstrap.Button
     Input = ReactBootstrap.Input
 
@@ -43,10 +42,15 @@
 
     update_button =
       <div>
-        <a onClick={@handleUpdate}       >Update</a>
+        <a onClick={@handleUpdate}      >Update</a>
         &nbsp; | &nbsp;
-        <a onClick={@handleCancelChange} >Cancel</a>
+        <a onClick={@handleCancelChange}>Cancel</a>
       </div>
+
+    type = if @state.changed
+             'warning'
+           else if @state.updated
+             'success'
 
     <form>
       <Input type='text'
@@ -55,5 +59,5 @@
              value={@state.value}
              buttonBefore={ delete_button }
              addonAfter={update_button if @state.changed}
-             bsStyle={'success' if @state.updated} />
+             bsStyle={type}/>
     </form>
