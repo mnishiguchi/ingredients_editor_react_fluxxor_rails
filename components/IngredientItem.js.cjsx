@@ -1,6 +1,6 @@
-# The sub-component <IngredientSuggestion/>
+# <IngredientSuggestion/>
 
-@IngredientSuggestion = React.createClass
+IngredientSuggestion =  React.createClass
   mixins: [Fluxxor.FluxMixin(React)]
 
   getInitialState: ->
@@ -61,3 +61,5 @@
              addonAfter={update_button if @state.changed}
              bsStyle={type}/>
     </form>
+
+module.exports = IngredientSuggestion
